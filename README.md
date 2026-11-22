@@ -4,14 +4,15 @@
 
 - 로그인: Firebase Authentication (Google, spextrum.net 계정만)
 - 데이터 저장: Cloud Firestore (팀 공용, 실시간 반영)
-- 배포: GitHub → Vercel 자동 배포 (명령어 설치 불필요)
+- 배포: GitHub Pages (Control Tower와 같은 방식)
+- 주소: https://sookyoung6-boop.github.io/costflow/
 
 ## 파일 구성
 
 | 파일 | 역할 |
 |---|---|
-| `public/index.html` | 앱 본체 |
-| `public/firebase-config.js` | Firebase 연결 설정값 (**등록 후 직접 교체**) |
+| `index.html` | 앱 본체 |
+| `firebase-config.js` | Firebase 연결 설정값 (costflow-spextrum 프로젝트) |
 | `firestore.rules` | 데이터 보안 규칙 (Firebase 콘솔에 붙여넣기) |
 | `firebase.json` | Firebase Hosting으로 배포할 때만 사용 |
 
@@ -45,23 +46,23 @@
 
 > 이 값은 비밀번호가 아닌 공개 식별값입니다. 데이터 보호는 2-4단계의 보안 규칙이 담당합니다.
 
-## 4. Vercel 배포
+## 4. GitHub Pages 배포
 
-1. Vercel → **Add New → Project** → `costflow` 저장소 Import
-2. **Framework Preset: Other** · Root Directory: 저장소 루트 · **Output Directory: `public`** · Build Command는 Override 켜고 빈칸
-3. **Deploy** → 발급된 주소 확인 (예: `costflow-xxxx.vercel.app`)
+1. GitHub 저장소 → **Settings → Pages**
+2. Source: **Deploy from a branch** · Branch: **main** / **(root)** → Save
+3. 1~2분 뒤 https://sookyoung6-boop.github.io/costflow/ 접속
 
-이후에는 GitHub에 파일을 수정·커밋할 때마다 Vercel이 자동으로 다시 배포합니다.
+이후 GitHub에 커밋할 때마다 자동으로 다시 배포됩니다.
 
 ## 5. 로그인 허용 도메인 추가 (필수)
 
-Firebase 콘솔 → **Authentication → 설정 → 승인된 도메인 → 도메인 추가** → Vercel 주소를 `https://` 없이 입력 (예: `costflow-xxxx.vercel.app`)
+Firebase 콘솔 → **Authentication → 설정 → 승인된 도메인 → 도메인 추가** → `sookyoung6-boop.github.io`
 
 이 단계를 빠뜨리면 로그인 시 `auth/unauthorized-domain` 오류가 납니다.
 
 ## 6. 동작 확인
 
-1. Vercel 주소 접속 → **Google 계정으로 로그인** (spextrum.net 계정)
+1. https://sookyoung6-boop.github.io/costflow/ 접속 → **Google 계정으로 로그인** (spextrum.net 계정)
 2. 프로젝트명·품목 입력 → 오른쪽 상단 표시가 **팀 공간에 저장됨**으로 바뀌는지 확인
 3. 다른 팀원 계정 또는 다른 기기에서 같은 주소로 로그인 → 같은 내용이 보이고, 한쪽에서 수정하면 다른 쪽에 바로 반영되는지 확인
 4. 개인 Gmail 계정으로 로그인하면 차단되는지 확인
@@ -78,7 +79,7 @@ Firebase 콘솔 → **Authentication → 설정 → 승인된 도메인 → 도�
    copy(localStorage.getItem('costflow-v1'))
    ```
    붙여넣기 경고가 나오면 `allow pasting`을 입력하고 Enter 후 다시 붙여넣습니다.
-3. 새 Costflow 주소에서 로그인 → 왼쪽 아래 **백업·가져오기** → 입력칸에 붙여넣기(Ctrl/Cmd+V) → **팀 공간으로 가져오기**
+3. 새 Costflow 주소(https://sookyoung6-boop.github.io/costflow/)에서 로그인 → 왼쪽 아래 **백업·가져오기** → 입력칸에 붙여넣기(Ctrl/Cmd+V) → **팀 공간으로 가져오기**
 
 같은 데이터를 두 번 가져와도 ID가 같은 항목은 덮어쓰므로 중복되지 않습니다.
 
@@ -94,7 +95,7 @@ Firebase 콘솔 → **Authentication → 설정 → 승인된 도메인 → 도�
 
 ## (선택) Firebase Hosting으로 배포하기
 
-Vercel 대신 Firebase에서 바로 배포하려면 Node.js 설치 후 터미널에서 실행합니다.
+GitHub Pages 대신 Firebase에서 배포하려면 Node.js 설치 후 터미널에서 실행합니다.
 
 ```
 npm install -g firebase-tools
