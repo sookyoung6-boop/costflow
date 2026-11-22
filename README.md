@@ -23,7 +23,7 @@
 1. github.com → 오른쪽 위 **＋ → New repository**
 2. Repository name: `costflow` · **Private** 선택 · 나머지는 체크하지 않고 **Create repository**
 3. 생성된 화면에서 **uploading an existing file** 클릭
-4. ZIP을 푼 폴더 안의 `public` 폴더, `firestore.rules`, `firebase.json`, `README.md`, `.gitignore`를 끌어다 놓고 **Commit changes**
+4. ZIP을 푼 폴더 안의 `index.html`, `firebase-config.js`, `firestore.rules`, `firebase.json`, `README.md`, `.gitignore`를 끌어다 놓고 **Commit changes**
    - Mac에서 `.gitignore`가 보이지 않으면 빼고 올려도 됩니다.
 
 ## 2. Firebase 프로젝트 만들기
@@ -41,7 +41,7 @@
 
 ## 3. 설정값 넣기
 
-1. GitHub 저장소에서 `public/firebase-config.js` 열기 → 연필 아이콘(Edit)
+1. GitHub 저장소에서 `firebase-config.js` 열기 → 연필 아이콘(Edit)
 2. `YOUR_...`로 된 값을 5단계에서 복사한 값으로 바꾸기 → **Commit changes**
 
 > 이 값은 비밀번호가 아닌 공개 식별값입니다. 데이터 보호는 2-4단계의 보안 규칙이 담당합니다.
